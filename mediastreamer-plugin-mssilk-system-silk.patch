@@ -1,14 +1,14 @@
---- mssilk-1.0.1/configure.ac.orig	2015-07-30 22:24:28.056188806 +0200
-+++ mssilk-1.0.1/configure.ac	2015-07-31 15:33:33.943597578 +0200
+--- mssilk-1.0.2/configure.ac.orig	2015-11-02 15:03:57.000000000 +0100
++++ mssilk-1.0.2/configure.ac	2015-11-11 19:42:18.780697200 +0100
 @@ -3,7 +3,6 @@
  
- AC_INIT([mssilk],[1.0.1])
+ AC_INIT([mssilk],[1.0.2])
  AC_PREREQ(2.63)
 -AC_CONFIG_SRCDIR([sdk/known_checksums/SILK_SDK_SRC_v1.0.8.zip.md5])
  AC_CONFIG_MACRO_DIR([m4])
  AM_INIT_AUTOMAKE([tar-ustar --warnings=no-portability])
  
-@@ -26,42 +25,6 @@
+@@ -26,48 +25,6 @@
  
  AC_SUBST(STRICT_CFLAGS)
  
@@ -40,7 +40,12 @@
 -	armv7*)
 -		SILK_MAKE_OPTIONS="USE_NEON=yes TOOLCHAIN_PREFIX=XXXX"
 -	;;
--*)
+-	arm*)
+-		dnl override flavour for case of old arm, as a workaround of a bug in the Skype's Makefile resulting in neon functions not being compiled while requested,
+-		dnl because the compiler says it supports armv7 and neon.
+-		SILK_FLAVOUR=FIX
+-	;;
+-	*)
 -	;;
 -esac
 -
@@ -48,9 +53,10 @@
 -
 -AC_SUBST([SILK_FLAVOUR])
 -AC_SUBST([SILK_MAKE_OPTIONS])
- 
+-
  LT_INIT([disable-static])
  
+ AC_ARG_WITH([mediastreamer], AS_HELP_STRING([--without-mediastreamer], [Permits to deactivate mediastreamer check for download of SILK code only]))
 --- mssilk-1.0.1/Makefile.am.orig	2015-02-17 14:17:43.000000000 +0100
 +++ mssilk-1.0.1/Makefile.am	2015-07-31 15:34:38.080261553 +0200
 @@ -1,9 +1,4 @@
