@@ -60,7 +60,7 @@
 --- mssilk-1.0.1/Makefile.am.orig	2015-02-17 14:17:43.000000000 +0100
 +++ mssilk-1.0.1/Makefile.am	2015-07-31 15:34:38.080261553 +0200
 @@ -1,9 +1,4 @@
- EXTRA_DIST=autogen.sh mssilk.iss.in 
+ EXTRA_DIST=autogen.sh mssilk.iss.in CMakeLists.txt
 -SILK_VERSION = 1.0.9
 -#SILK_DIR=$(srcdir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
 -SILK_DIR=$(top_builddir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
