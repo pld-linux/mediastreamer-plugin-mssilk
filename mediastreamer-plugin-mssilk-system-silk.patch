@@ -1,14 +1,46 @@
---- mssilk-1.0.2/configure.ac.orig	2015-11-02 15:03:57.000000000 +0100
-+++ mssilk-1.0.2/configure.ac	2015-11-11 19:42:18.780697200 +0100
+diff -urNp -x '*.orig' mssilk-1.1.1.org/Makefile.am mssilk-1.1.1/Makefile.am
+--- mssilk-1.1.1.org/Makefile.am	2016-03-17 15:03:40.000000000 +0100
++++ mssilk-1.1.1/Makefile.am	2021-07-06 00:26:34.986591109 +0200
+@@ -1,9 +1,4 @@
+ EXTRA_DIST=autogen.sh mssilk.iss.in CMakeLists.txt
+-SILK_VERSION = 1.0.9
+-#SILK_DIR=$(srcdir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
+-SILK_DIR=$(top_builddir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
+-
+-SUBDIRS = sdk
+ 
+ 
+ pluginsdir = $(libdir)/mediastreamer/plugins
+@@ -13,7 +8,7 @@ plugins_LTLIBRARIES=libmssilk.la
+ libmssilk_la_SOURCES=silk_dec.c silk_enc.c
+ 
+ 
+-SILK_LIBS = -L${SILK_DIR} -lSKP_SILK_SDK
++SILK_LIBS = -lSKP_SILK_SDK
+ libmssilk_la_LIBADD=\
+ 	$(ORTP_LIBS) \
+         $(MEDIASTREAMER_LIBS) \
+@@ -21,7 +16,7 @@ libmssilk_la_LIBADD=\
+ 
+ libmssilk_la_LDFLAGS=-module -no-undefined
+ 
+-SILK_CFLAGS = -I$(SILK_DIR)/interface 
++SILK_CFLAGS =
+ AM_CFLAGS=      $(SILK_CFLAGS) \
+                 $(MEDIASTREAMER_CFLAGS) \
+ 				$(STRICT_CFLAGS)
+diff -urNp -x '*.orig' mssilk-1.1.1.org/configure.ac mssilk-1.1.1/configure.ac
+--- mssilk-1.1.1.org/configure.ac	2017-07-20 10:47:56.000000000 +0200
++++ mssilk-1.1.1/configure.ac	2021-07-06 00:26:34.986591109 +0200
 @@ -3,7 +3,6 @@
  
- AC_INIT([mssilk],[1.0.2])
+ AC_INIT([mssilk],[1.1.0])
  AC_PREREQ(2.63)
 -AC_CONFIG_SRCDIR([sdk/known_checksums/SILK_SDK_SRC_v1.0.8.zip.md5])
  AC_CONFIG_MACRO_DIR([m4])
  AM_INIT_AUTOMAKE([tar-ustar --warnings=no-portability])
  
-@@ -26,48 +25,6 @@
+@@ -26,48 +25,6 @@ fi
  
  AC_SUBST(STRICT_CFLAGS)
  
@@ -57,33 +89,3 @@
  LT_INIT([disable-static])
  
  AC_ARG_WITH([mediastreamer], AS_HELP_STRING([--without-mediastreamer], [Permits to deactivate mediastreamer check for download of SILK code only]))
---- mssilk-1.0.1/Makefile.am.orig	2015-02-17 14:17:43.000000000 +0100
-+++ mssilk-1.0.1/Makefile.am	2015-07-31 15:34:38.080261553 +0200
-@@ -1,9 +1,4 @@
- EXTRA_DIST=autogen.sh mssilk.iss.in CMakeLists.txt
--SILK_VERSION = 1.0.9
--#SILK_DIR=$(srcdir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
--SILK_DIR=$(top_builddir)/sdk/SILK_SDK_SRC_v$(SILK_VERSION)/SILK_SDK_SRC_$(SILK_FLAVOUR)_v$(SILK_VERSION)
--
--SUBDIRS = sdk
- 
- 
- pluginsdir = $(libdir)/mediastreamer/plugins
-@@ -13,7 +8,7 @@
- libmssilk_la_SOURCES=silk_dec.c silk_enc.c
- 
- 
--SILK_LIBS = -L${SILK_DIR} -lSKP_SILK_SDK
-+SILK_LIBS = -lSKP_SILK_SDK
- libmssilk_la_LIBADD=\
- 	$(ORTP_LIBS) \
-         $(MEDIASTREAMER_LIBS) \
-@@ -21,7 +16,7 @@
- 
- libmssilk_la_LDFLAGS=-module -no-undefined
- 
--SILK_CFLAGS = -I$(SILK_DIR)/interface 
-+SILK_CFLAGS =
- AM_CFLAGS=      $(SILK_CFLAGS) \
-                 $(MEDIASTREAMER_CFLAGS) \
- 				$(STRICT_CFLAGS)

@@ -2,7 +2,7 @@ Summary:	SILK audio codec for mediastreamer
 Summary(pl.UTF-8):	Kodek dźwięku SILK dla mediastreamera
 Name:		mediastreamer-plugin-mssilk
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://linphone.org/releases/sources/plugins/mssilk/mssilk-%{version}.tar.gz
