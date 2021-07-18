@@ -5,10 +5,12 @@ Version:	1.1.1
 Release:	3
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://linphone.org/releases/sources/plugins/mssilk/mssilk-%{version}.tar.gz
+#Source0Download: https://gitlab.linphone.org/BC/public/mssilk/-/tags
+#Source0:	https://gitlab.linphone.org/BC/public/mssilk/-/archive/%{version}/mssilk-%{version}.tar.bz2
+Source0:	http://linphone.org/releases/old/sources/plugins/mssilk/mssilk-%{version}.tar.gz
 # Source0-md5:	ad0b441fdd4d6b6a6db41c2b322d5691
 Patch0:		%{name}-system-silk.patch
-URL:		https://github.com/Distrotech/mssilk
+URL:		https://gitlab.linphone.org/BC/public/mssilk
 BuildRequires:	SILK_SDK-devel >= 1.0.9
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
