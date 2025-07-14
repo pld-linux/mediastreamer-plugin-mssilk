@@ -29,7 +29,7 @@ Ten pakiet udostępnia wtyczkę mediastreamera do kodeka dźwięku SILK.
 
 %prep
 %setup -q -n mssilk-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__libtoolize}
